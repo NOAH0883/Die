@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -19,10 +20,17 @@ public class Test : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private float jumpSelectionSpeed;
     private float jumpMax = 10;
+    public Transform direction;
     
     [SerializeField] GameObject aimPivot;
+    [SerializeField] float aimRotationSpeed;
     private float aimAngleMin;
-    private float aimAngleMax;  
+    private float aimAngleMax;
+
+    [SerializeField] TextMeshProUGUI jumpPowerUI;
+
+
+    
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,22 +45,14 @@ public class Test : MonoBehaviour
     {
         GroundCheck();
         movementx = Input.GetAxis("Horizontal");
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //float randomAngle = Random.Range(0f, 360f);
-        //float radians = randomAngle * Mathf.Deg2Rad;
-        //Vector2 randomDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
-
-        //rb.AddForce(randomDirection * jumpPower, ForceMode2D.Impulse);
-        //}
         jump();
+        jumpUI();
     }
 
     private void FixedUpdate()
     {
         
-        Movement();
+        //Movement();
     }
 
 
@@ -76,24 +76,25 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isJumping)
         {
-            //aimPivot.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            Debug.Log("Reset jump");
+            aimPivot.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             isJumping = true;
+            jumpPower = 0f;
         }
 
             
         if (Input.GetKey(KeyCode.Space) && isGrounded && isJumping)
         {
             
-            //jumpPower = Mathf.PingPong(Time.time * jumpSelectionSpeed, jumpMax)* 2;
-            jumpPower = 10f;
+            jumpPower = Mathf.PingPong(Time.time * jumpSelectionSpeed, jumpMax)* 5;
+            
+
             if(Input.GetKey(KeyCode.A))
             {
-                aimPivot.transform.Rotate(0, 0, 1);
+                aimPivot.transform.Rotate(0, 0, aimRotationSpeed);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                aimPivot.transform.Rotate(0, 0, -1);
+                aimPivot.transform.Rotate(0, 0, -aimRotationSpeed);
             }
             Debug.Log("Move aim");
         }
@@ -102,14 +103,16 @@ public class Test : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space) && isGrounded && isJumping)
         {
-            float radians = aimPivot.transform.rotation.z * Mathf.Deg2Rad;
-            Vector2 jumpDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
-            Debug.Log(jumpDirection);
+            //float radians = aimPivot.transform.rotation.z * Mathf.Deg2Rad;
+            //Vector2 jumpDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
+            //Debug.Log(jumpDirection);
 
+            Vector2 jumpDirection = (direction.position - transform.position).normalized;
+            rb.linearVelocity = Vector2.zero;
 
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);
             isJumping = false;
-            Debug.Log("Jump");
+            jumpPower = 0f;
         }
     }
 
@@ -137,5 +140,14 @@ public class Test : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
+    }
+
+
+
+
+
+    void jumpUI()
+    {
+        jumpPowerUI.text = ("Jump Power :" + jumpPower);
     }
 }
