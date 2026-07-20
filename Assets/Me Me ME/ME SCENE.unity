@@ -3063,7 +3063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1507ec50013b1468d8c1083169492d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  frogForce: 50
+  frogForceX: 0
+  frogForceY: 0
   isLeft: 1
 --- !u!61 &1363014997
 BoxCollider2D:
@@ -3377,7 +3378,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
