@@ -12,12 +12,13 @@ public class Frog : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            hitObj = collision.gameObject;
+           // hitObj = collision.gameObject;
             HitObjRb = collision.rigidbody;
             
             if(!isLeft)
             {
                 HitObjRb.AddForce(Vector2.left * frogForce, ForceMode2D.Impulse);
+                HitObjRb.AddForce(Vector2.up * frogForce, ForceMode2D.Impulse);
             }
             else
             {
