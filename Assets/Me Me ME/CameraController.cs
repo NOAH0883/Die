@@ -21,9 +21,9 @@ public class CameraController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) //if the player collides with the cameraPos collider
         {
-            cam.transform.position = this.transform.position;
+            cam.transform.position = this.transform.position;//set the camera to the cameraPos
         }
     }
     

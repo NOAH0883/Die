@@ -47,11 +47,6 @@ public class bird_movement : MonoBehaviour
             spriteRenderer.flipX = true;
         }
 
-        //if (transform.position.x > rightBorder)
-        // {
-
-
-        //}
-
+        
     }
 }
