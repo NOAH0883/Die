@@ -4,7 +4,8 @@ public class Frog : MonoBehaviour
 {
     //GameObject hitObj;
     Rigidbody2D HitObjRb;
-    public float frogForce;
+    public float frogForceX;
+    public float frogForceY;
     public bool isLeft;
     
 
@@ -17,12 +18,13 @@ public class Frog : MonoBehaviour
             
             if(!isLeft)
             {
-                HitObjRb.AddForce(Vector2.left * frogForce, ForceMode2D.Impulse);
-                HitObjRb.AddForce(Vector2.up * frogForce, ForceMode2D.Impulse);
+                HitObjRb.AddForce(Vector2.left * frogForceX, ForceMode2D.Impulse);
+                HitObjRb.AddForce(Vector2.up * frogForceY, ForceMode2D.Impulse);
             }
             else
             {
-                HitObjRb.AddForce(Vector2.right * frogForce, ForceMode2D.Impulse);
+                HitObjRb.AddForce(Vector2.right * frogForceX, ForceMode2D.Impulse);
+                HitObjRb.AddForce(Vector2.up * frogForceY, ForceMode2D.Impulse);
             }
             
 

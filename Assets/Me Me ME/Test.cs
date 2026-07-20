@@ -80,12 +80,12 @@ public class Test : MonoBehaviour
             isJumping = true;
             jumpPower = 0f; // reset jump power
         }
-
+        
             
         if (Input.GetKey(KeyCode.Space) && isGrounded && isJumping)//when the space is held down
         {
             
-            jumpPower = Mathf.PingPong(Time.time * jumpSelectionSpeed, jumpMax)* 5;//the jump power goes back and forth between the 0 and jump max
+            jumpPower = Mathf.PingPong(jumpSelectionSpeed * Time.time, jumpMax)* 7;//the jump power goes back and forth between the 0 and jump max
             
 
             if(Input.GetKey(KeyCode.A))
@@ -97,6 +97,8 @@ public class Test : MonoBehaviour
                 aimPivot.transform.Rotate(0, 0, -aimRotationSpeed);//aim moves right multiplied by aim rotation speed
             }
             
+
+
         }
 
 
@@ -107,6 +109,7 @@ public class Test : MonoBehaviour
 
             Vector2 jumpDirection = (direction.position - transform.position).normalized;//gets the the jump direction 
             rb.linearVelocity = Vector2.zero;//reset the players velocity
+
 
             rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);//add force to player in jump direction multiplied by jump power
             isJumping = false;//stop jumping
