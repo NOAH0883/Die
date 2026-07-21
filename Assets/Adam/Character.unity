@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 566187589}
   - component: {fileID: 566187593}
   - component: {fileID: 566187592}
-  - component: {fileID: 566187594}
   m_Layer: 0
   m_Name: fish
   m_TagString: Untagged
@@ -299,30 +298,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.05
---- !u!114 &566187594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566187588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0aeeb68359dd4bbe36a5a7d556df2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test
-  moveSpeed: 5
-  groundCheckPoint: {fileID: 0}
-  groundCheckSize: {x: 0, y: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  jumpPower: 5
-  jumpSelectionSpeed: 0
-  direction: {fileID: 0}
-  aimPivot: {fileID: 0}
-  aimRotationSpeed: 0
-  jumpPowerUI: {fileID: 0}
 --- !u!1 &735259863
 GameObject:
   m_ObjectHideFlags: 0
