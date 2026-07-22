@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -6,8 +7,6 @@ public class Test : MonoBehaviour
     private Rigidbody2D rb;
     private float movementx;
     [SerializeField] float moveSpeed;
-
-
 
 
     [SerializeField] private Transform groundCheckPoint;
@@ -20,55 +19,47 @@ public class Test : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private float jumpSelectionSpeed;
     private float jumpMax = 10;
+    private bool increaseJump;
     public Transform direction;
     
+
     [SerializeField] GameObject aimPivot;
     [SerializeField] float aimRotationSpeed;
-    private float aimAngleMin;
-    private float aimAngleMax;
+    [SerializeField] float jumpAngleClamp;
+    [SerializeField] float currentAngleRotation;
+
 
     [SerializeField] TextMeshProUGUI jumpPowerUI;
 
 
     
-    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // gets rigidbody on player
     }
 
-    // Update is called once per frame
-    
+
     void Update()
     {
-        GroundCheck();
         movementx = Input.GetAxis("Horizontal"); //old input system
+        GroundCheck();
         jump();
         jumpUI();
     }
 
     private void FixedUpdate()
     {
-        
         //Movement();
     }
 
 
-
     private void Movement()
-    {
-       
+    {  
         if(isGrounded && !isJumping) // if player is on the ground and not jumping, the player can move
         {
             rb.linearVelocity = new Vector2(movementx * moveSpeed, rb.linearVelocity.y); 
         }
-        
-       
     }
-
-
 
 
 
@@ -76,29 +67,18 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isJumping)//when the space is pressed
         {
-            aimPivot.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // reset aim to 0,0,0
-            isJumping = true;
+            
+            isJumping = true;// tells script that the player is jumping
             jumpPower = 0f; // reset jump power
+            currentAngleRotation = 0;//reset jump angle
         }
         
             
         if (Input.GetKey(KeyCode.Space) && isGrounded && isJumping)//when the space is held down
         {
-            
-            jumpPower = Mathf.PingPong(jumpSelectionSpeed * Time.time, jumpMax)* 7;//the jump power goes back and forth between the 0 and jump max
-            
-
-            if(Input.GetKey(KeyCode.A))
-            {
-                aimPivot.transform.Rotate(0, 0, aimRotationSpeed);//aim moves left multiplied by aim rotation speed
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                aimPivot.transform.Rotate(0, 0, -aimRotationSpeed);//aim moves right multiplied by aim rotation speed
-            }
-            
-
-
+            //jumpPower = Mathf.PingPong(jumpSelectionSpeed * Time.time, jumpMax)* 7;//the jump power goes back and forth between the 0 and jump max
+            UpandDown();
+            JumpAim();
         }
 
 
@@ -111,9 +91,10 @@ public class Test : MonoBehaviour
             rb.linearVelocity = Vector2.zero;//reset the players velocity
 
 
-            rb.AddForce(jumpDirection * jumpPower, ForceMode2D.Impulse);//add force to player in jump direction multiplied by jump power
+            rb.AddForce(jumpDirection * jumpPower * 6, ForceMode2D.Impulse);//add force to player in jump direction multiplied by jump power
             isJumping = false;//stop jumping
             jumpPower = 0f;//resets jump power
+            currentAngleRotation = 0;//reset aim rotation
         }
     }
 
@@ -133,9 +114,75 @@ public class Test : MonoBehaviour
         {
             isGrounded = false;//The player is not touching the ground 
         }
-        
 
     }
+
+   
+
+
+    void UpandDown()//ping pong number for jump
+    {
+        if(jumpPower >= jumpMax)
+        {
+            increaseJump = false;
+        }
+        else if (jumpPower <=0)
+        {
+            increaseJump = true;
+        }
+
+        if (increaseJump)
+        {
+            jumpPower += 2 * Time.deltaTime;
+        }
+        else
+        {
+            jumpPower -= 2 * Time.deltaTime;
+        }
+        
+        //float number increase 
+        //if number is greater than max 
+        //decrease number
+        //if number is less than 0
+        //increase number
+    }
+
+
+    void JumpAim()
+    {
+
+        //float rotationSpeed
+        //float rotationClamp
+        //float currentRotation 
+
+        //Horizontal input same as movement
+        //change currentRotation by Horizontal input
+        //clamp currentRotation by rotation clamp float
+
+        //aimPivot.transform.LocalEulerAngles with current rotation float
+
+        //use currentRotationFloat to change the fish animation
+
+
+        float aimMovement = Input.GetAxis("Horizontal") * aimRotationSpeed * Time.deltaTime; //old input system
+        currentAngleRotation -= aimMovement; // increase currentAngleRotation by aimMovement
+        currentAngleRotation = Mathf.Clamp(currentAngleRotation, -jumpAngleClamp, jumpAngleClamp);// makes it so the player can't rotate past a given angle
+        aimPivot.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, currentAngleRotation);// set the aimpivots rotation to the currentAngleRotation
+
+    }
+
+    //void FishAnimation()
+
+    //if player is grounded and not jumping - set animation to idle
+    
+    //if player is jumping
+    //if currentAngleRotation is greater than 0 - play right aim animation 
+    //if currentAngleRotation is less than 0  - play right aim animation
+    
+    //if player is not grounded and not jumping - set animation to flop
+
+
+
 
     private void OnDrawGizmosSelected()
     {
@@ -144,11 +191,9 @@ public class Test : MonoBehaviour
     }
 
 
-
-
-
     void jumpUI()
     {
         jumpPowerUI.text = ("Jump Power :" + jumpPower);//displays the jump power to the player - will switch to a bar rather than text
     }
+
 }

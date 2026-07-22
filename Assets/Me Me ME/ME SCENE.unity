@@ -307,8 +307,8 @@ Transform:
   m_GameObject: {fileID: 31523450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.598, y: 52.2, z: 0}
-  m_LocalScale: {x: 27.818655, y: 3.075, z: 1}
+  m_LocalPosition: {x: 14.598, y: 55.9, z: 0}
+  m_LocalScale: {x: 20.168526, y: 3.075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1183836234}
@@ -1129,7 +1129,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &198049935
 RectTransform:
@@ -1592,7 +1592,6 @@ MonoBehaviour:
   - {fileID: 1325193488}
   - {fileID: 1605419374}
   - {fileID: 762361526}
-  currentRoom: 0
 --- !u!114 &364452093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,15 +1754,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.1211753
+      value: 7.813354
       objectReference: {fileID: 0}
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.1211753
+      value: 7.813354
       objectReference: {fileID: 0}
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.1211753
+      value: 7.813354
       objectReference: {fileID: 0}
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1771,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4959257854098676603, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1816,6 +1815,10 @@ PrefabInstance:
     - target: {fileID: 7729967176592899851, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_Name
       value: frog_funnyglasses
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989507225158435661, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7989507225158435661, guid: 1b3de930c85ca404aa16323ac6f9c7d8, type: 3}
       propertyPath: m_SpriteSortPoint
@@ -1923,6 +1926,7 @@ Transform:
   - {fileID: 1677608050}
   - {fileID: 1802583964}
   - {fileID: 271352265}
+  - {fileID: 1246251495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669116113
@@ -2549,7 +2553,7 @@ GameObject:
   - component: {fileID: 1246251495}
   - component: {fileID: 1246251494}
   m_Layer: 0
-  m_Name: pixil-frame-0 (10)_0
+  m_Name: Background6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2622,12 +2626,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246251493}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18138123, y: 223.05, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.7042313, y: 222.47447, z: 0}
   m_LocalScale: {x: 72, y: 72, z: 72}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 624154217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250609671
 GameObject:
@@ -2656,7 +2660,7 @@ Transform:
   m_GameObject: {fileID: 1250609671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.25442192, w: 0.96709335}
-  m_LocalPosition: {x: -19.8, y: 96.1, z: 0}
+  m_LocalPosition: {x: -19.8, y: 98.4, z: 0}
   m_LocalScale: {x: 22.971094, y: 3.075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2984,7 +2988,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -3024,7 +3028,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.4, y: 72.2, z: 0}
-  m_LocalScale: {x: 22.971094, y: 3.075, z: 1}
+  m_LocalScale: {x: 20.386847, y: 3.075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1183836234}
@@ -4185,7 +4189,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.03999734, b: 1, a: 1}
@@ -4236,7 +4240,9 @@ MonoBehaviour:
   jumpSelectionSpeed: 6
   direction: {fileID: 1307734638}
   aimPivot: {fileID: 381145262}
-  aimRotationSpeed: 0.25
+  aimRotationSpeed: 80
+  jumpAngleClamp: 90
+  currentAngleRotation: 0
   jumpPowerUI: {fileID: 89292895}
 --- !u!58 &1675335955
 CircleCollider2D:
@@ -4691,4 +4697,3 @@ SceneRoots:
   - {fileID: 1363014995}
   - {fileID: 269665540}
   - {fileID: 624154217}
-  - {fileID: 1246251495}
