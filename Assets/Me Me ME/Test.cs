@@ -40,16 +40,18 @@ public class Test : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // gets rigidbody on player
-        ani = GetComponent<Animator>();
+        ani = GetComponentInChildren<Animator>(); // gets animatior controller on player - fish visual
+        
     }
 
 
     void Update()
     {
         movementx = Input.GetAxis("Horizontal"); //old input system
-        GroundCheck();
-        jump();
-        jumpUI();
+        GroundCheck(); // calls Ground check function
+        jump(); // calls jump function
+        jumpUI();// calls jumpUi function
+        FishAnimations(); // calls fishAnimation function
     }
 
     private void FixedUpdate()
@@ -82,8 +84,8 @@ public class Test : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isGrounded && isJumping)//when the space is held down
         {
             //jumpPower = Mathf.PingPong(jumpSelectionSpeed * Time.time, jumpMax)* 7;//the jump power goes back and forth between the 0 and jump max
-            UpandDown();
-            JumpAim();
+            UpandDown(); // call function to incease and decerease jump power
+            JumpAim(); // falls the fuction to aim the fish
         }
 
 
@@ -102,10 +104,6 @@ public class Test : MonoBehaviour
             currentAngleRotation = 0;//reset aim rotation
         }
     }
-
-
-
-
 
 
 
@@ -180,17 +178,32 @@ public class Test : MonoBehaviour
 
     void FishAnimations()
     {
+        
+        if (currentAngleRotation < 0)
+        {
+            Debug.Log("turn right");
+            ani.SetBool("TurnLeft", false);
+            ani.SetBool("TurnRight", true);
+            
+        }
+        if (currentAngleRotation > 0)
+        {
+            ani.SetBool("TurnRight", false);
+            ani.SetBool("TurnLeft", true);
+        }
+
+
+        //void FishAnimation()
+
+        //if player is grounded and not jumping - set animation to idle
+
+        //if player is jumping
+        //if currentAngleRotation is greater than 0 - play right aim animation 
+        //if currentAngleRotation is less than 0  - play right aim animation
+
+        //if player is not grounded and not jumping - set animation to flop
 
     }
-    //void FishAnimation()
-
-    //if player is grounded and not jumping - set animation to idle
-    
-    //if player is jumping
-    //if currentAngleRotation is greater than 0 - play right aim animation 
-    //if currentAngleRotation is less than 0  - play right aim animation
-    
-    //if player is not grounded and not jumping - set animation to flop
 
 
 
