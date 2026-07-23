@@ -32,10 +32,15 @@ public class Test : MonoBehaviour
     [SerializeField] TextMeshProUGUI jumpPowerUI;
 
 
+
+    private Animator ani;
+
+
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // gets rigidbody on player
+        ani = GetComponent<Animator>();
     }
 
 
@@ -133,11 +138,11 @@ public class Test : MonoBehaviour
 
         if (increaseJump)
         {
-            jumpPower += 2 * Time.deltaTime;
+            jumpPower += jumpSelectionSpeed * Time.deltaTime;
         }
         else
         {
-            jumpPower -= 2 * Time.deltaTime;
+            jumpPower -= jumpSelectionSpeed * Time.deltaTime;
         }
         
         //float number increase 
@@ -171,6 +176,12 @@ public class Test : MonoBehaviour
 
     }
 
+
+
+    void FishAnimations()
+    {
+
+    }
     //void FishAnimation()
 
     //if player is grounded and not jumping - set animation to idle
