@@ -188,6 +188,7 @@ public class Test : MonoBehaviour
         }
         if (currentAngleRotation > 0)
         {
+            Debug.Log("turn");
             ani.SetBool("TurnRight", false);
             ani.SetBool("TurnLeft", true);
         }
