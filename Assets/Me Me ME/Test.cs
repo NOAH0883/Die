@@ -195,7 +195,13 @@ public class Test : MonoBehaviour
 
         if (!isGrounded)
         {
+            ani.SetBool("TurnRight", false);
+            ani.SetBool("TurnLeft", false);
             ani.SetBool("Grounded", false);
+        }
+        else
+        {
+            ani.SetBool("Grounded", true);
         }
 
 
