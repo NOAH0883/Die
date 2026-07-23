@@ -179,18 +179,23 @@ public class Test : MonoBehaviour
     void FishAnimations()
     {
         
-        if (currentAngleRotation < 0)
+        if (currentAngleRotation < 0 && isGrounded)
         {
             Debug.Log("turn right");
             ani.SetBool("TurnLeft", false);
             ani.SetBool("TurnRight", true);
             
         }
-        if (currentAngleRotation > 0)
+        if (currentAngleRotation > 0 && isGrounded)
         {
             Debug.Log("turn");
             ani.SetBool("TurnRight", false);
             ani.SetBool("TurnLeft", true);
+        }
+
+        if (!isGrounded)
+        {
+            ani.SetBool("Grounded", true);
         }
 
 
