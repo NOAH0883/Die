@@ -81,7 +81,7 @@ public class CameraMove : MonoBehaviour
 
     private void DisplayQuote()
     {
-        Debug.Log("Quote...");
+        
         randomNumber = Random.Range(0, fishQuotes.Length-1);
           
     }
